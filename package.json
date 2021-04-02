@@ -1,0 +1,9 @@
+{
+  "name": "mysys-api",
+  "version": "1.0.0",
+  "description": "TypeScript, Nodejs, API",
+  "main": "index.js",
+  "repository": "https://github.com/mySyst/mysys-api.git",
+  "author": "brunocesarangst <bruno.angst@rede.ulbra.br>",
+  "license": "MIT"
+}
