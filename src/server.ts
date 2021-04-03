@@ -4,7 +4,6 @@ import express, { Application } from 'express';
 import { DemandsController } from './controllers/demads';
 
 export class SetupServer extends Server {
-
   constructor(private port = 3000) {
     super();
   }
@@ -15,12 +14,12 @@ export class SetupServer extends Server {
   }
 
   private SetupExpress(): void {
-    this.app.use(express.json())
+    this.app.use(express.json());
   }
 
   private SetupControllers(): void {
-    const demandsController = new DemandsController;
-    this.addControllers([demandsController])
+    const demandsController = new DemandsController();
+    this.addControllers([demandsController]);
   }
 
   public getApp(): Application {
