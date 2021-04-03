@@ -1,8 +1,11 @@
-describe("Demands funcional test", () => {
-  it("should return a demand simple", async () => {
-    const { body, status } = await global.testRequest.get("/demand");
-    expect(status).toBe(200);
-    expect(body).toEqual([
+import { Controller, Get } from "@overnightjs/core";
+import { Request, Response } from "express";
+
+@Controller("demand")
+export class DemandsController {
+  @Get("")
+  public getDemandsForLoggedUser(_: Request, res: Response): void {
+    res.send([
       {
         demand: [
           {
@@ -20,5 +23,5 @@ describe("Demands funcional test", () => {
         ],
       },
     ]);
-  });
-});
+  }
+}
