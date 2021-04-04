@@ -26,21 +26,22 @@ export class SetupServer extends Server {
     this.addControllers([demandsController]);
   }
 
-  public getApp(): Application {
-    return this.app;
-  }
-
+  
   private async databaseSetup(): Promise<void> {
     await database.connect();
   }
-
+  
   public async close(): Promise<void> {
     await database.close();
   }
-
-  public start(): void {
-    this.app.listen(this.port, () => {
-      console.info('Server listening on port: ' + this.port);
-    });
+  
+  public getApp(): Application {
+    return this.app;
   }
+  
+  // public start(): void {
+  //   this.app.listen(this.port, () => {
+  //     console.info('Server listening on port: ' + this.port);
+  //   });
+  // }
 }

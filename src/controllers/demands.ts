@@ -1,13 +1,13 @@
 import { Controller, Get } from '@overnightjs/core';
 import { Request, Response } from 'express';
 
-@Controller('demand')
+@Controller('demands')
 export class DemandsController {
   @Get('')
   public getDemandsForLoggedUser(_: Request, res: Response): void {
     res.send([
       {
-        demand: [
+        demands: [
           {
             id: 1,
             title: 'Comprar leite',

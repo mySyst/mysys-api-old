@@ -26,6 +26,6 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
-  "include": ["./src/**/*.ts", "./test/**/*.ts"],
+  "include": ["./src/**/*.ts", "./test/**/*.ts", "test/funcional/users.test.ts1"],
   "exclude": ["./node_modules/*", "dist"]
 }

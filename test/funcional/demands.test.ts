@@ -1,10 +1,10 @@
 describe('Demands funcional test', () => {
   it('should return a demand simple', async () => {
-    const { body, status } = await global.testRequest.get('/demand');
+    const { body, status } = await global.testRequest.get('/demands');
     expect(status).toBe(200);
     expect(body).toEqual([
       {
-        demand: [
+        demands: [
           {
             id: 1,
             title: 'Comprar leite',
