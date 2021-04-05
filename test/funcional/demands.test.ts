@@ -15,7 +15,8 @@ describe('Demands functional test', () => {
     await Demand.deleteMany({});
     await User.deleteMany({});
     const user = await new User(defaultUser).save();
-    token = AuthService.generateToken(user.toJSON());
+    // LGPD e JSON Web Token
+    token = AuthService.generateToken(user.id);
   });
 
   describe('When creating a new demand', () => {
@@ -30,6 +31,7 @@ describe('Demands functional test', () => {
         .set({ 'x-access-token': token })
         .send(newDemand);
       expect(response.status).toBe(201);
+      //Object containing matches the keys and values, even if includes other keys such as id.
       expect(response.body).toEqual(expect.objectContaining(newDemand));
     });
   });

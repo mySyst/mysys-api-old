@@ -1,8 +1,9 @@
-import { Controller, Post } from '@overnightjs/core';
+import { Controller, Get, Middleware, Post } from '@overnightjs/core';
 import { Response, Request } from 'express';
 import { User } from '@src/models/user';
 import { BaseController } from '.';
 import AuthService from '@src/services/auth';
+import { authMiddleware } from '@src/middlewares/auth';
 
 @Controller('users')
 export class UsersController extends BaseController {
@@ -33,8 +34,23 @@ export class UsersController extends BaseController {
         .status(401)
         .send({ code: 401, error: 'Password does not match!' });
     }
-    const token = AuthService.generateToken(user.toJSON());
+    const token = AuthService.generateToken(user.id);
 
     return res.send({ ...user.toJSON(), ...{ token } });
+  }
+
+  @Get('me')
+  @Middleware(authMiddleware)
+  public async me(req: Request, res: Response): Promise<Response> {
+    const userId = req.context?.userId;
+    const user = await User.findOne({ _id: userId });
+    if (!user) {
+      return this.sendErrorResponse(res, {
+        code: 404,
+        message: 'User not found!',
+      });
+    }
+
+    return res.send({ user });
   }
 }
