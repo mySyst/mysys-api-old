@@ -1,4 +1,3 @@
-import { User } from '@src/models/user';
 import bcrypt from 'bcrypt';
 import config from 'config'
 import jwt from 'jsonwebtoken'

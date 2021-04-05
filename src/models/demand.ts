@@ -9,7 +9,7 @@ export interface Demand {
 const schema = new mongoose.Schema(
   {
     title: { type: String, required: true },
-    describe: { type: String, required: true },
+    describe: { type: String, required: false },
     user: { type: Schema.Types.ObjectId, ref: 'User', require: true },
   },
   {
