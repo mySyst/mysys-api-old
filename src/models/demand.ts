@@ -1,4 +1,4 @@
-import mongoose, { Document, Model } from 'mongoose';
+import mongoose, { Document, Model, Schema } from 'mongoose';
 
 export interface Demand {
   _id?: string;
@@ -10,6 +10,7 @@ const schema = new mongoose.Schema(
   {
     title: { type: String, required: true },
     describe: { type: String, required: true },
+    user: { type: Schema.Types.ObjectId, ref: 'User', require: true },
   },
   {
     toJSON: {

@@ -3,6 +3,11 @@
     "port": 3000,
     "database": {
       "mongoUrl": "mongodb+srv://mysys:Bruno4n657@mysys.incpz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+    },
+
+    "auth": {
+      "key": "some-key",
+      "tokenExpiresIn": "20000000"
     }
   }
 }
