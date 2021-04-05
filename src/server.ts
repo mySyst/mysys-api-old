@@ -1,6 +1,7 @@
 import './util/module-alias';
 import { Server } from '@overnightjs/core';
 import express, { Application } from 'express';
+import { AllDemandsController } from './controllers/allDemands';
 import { DemandsController } from './controllers/demands';
 
 import * as database from '@src/database';
@@ -22,10 +23,14 @@ export class SetupServer extends Server {
   }
 
   private SetupControllers(): void {
-    const demandsController = new DemandsController();
-    this.addControllers([demandsController]);
+    const alldemandsController = new AllDemandsController();
+    const demandsController = new DemandsController()
+    this.addControllers([demandsController, alldemandsController]);
   }
 
+  public getApp(): Application {
+    return this.app;
+  }
   
   private async databaseSetup(): Promise<void> {
     await database.connect();
@@ -35,13 +40,9 @@ export class SetupServer extends Server {
     await database.close();
   }
   
-  public getApp(): Application {
-    return this.app;
+  public start(): void {
+    this.app.listen(this.port, () => {
+      console.info('Server listening on port: ' + this.port);
+    });
   }
-  
-  // public start(): void {
-  //   this.app.listen(this.port, () => {
-  //     console.info('Server listening on port: ' + this.port);
-  //   });
-  // }
 }

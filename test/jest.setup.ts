@@ -1,6 +1,7 @@
 import { SetupServer } from '@src/server';
 import supertest from 'supertest';
 
+jest.setTimeout(3000);
 
 let server: SetupServer;
 

@@ -1,24 +1,16 @@
-describe('Demands funcional test', () => {
-  it('should return a demand simple', async () => {
-    const { body, status } = await global.testRequest.get('/demands');
-    expect(status).toBe(200);
-    expect(body).toEqual([
-      {
-        demands: [
-          {
-            id: 1,
-            title: 'Comprar leite',
-            description: 'Compras para tomar café da tarde',
-            time: '2021-04-02T08:00+00:00',
-          },
-          {
-            id: 2,
-            title: 'Comprar Café',
-            description: 'Compras para tomar café da tarde',
-            time: '2021-04-02T09:00+00:00',
-          },
-        ],
-      },
-    ]);
+describe('Demands functional test', () => {
+  describe('When creating a demand', () => {
+    it('should create a demand with success', async () => {
+      const newDemand = {
+        title: 'comprar leite',
+        describe: 'Para o café da tarde',
+      };
+
+      const response = await global.testRequest
+        .post('/demands')
+        .send(newDemand);
+      expect(response.status).toBe(201);
+      expect(response.body).toEqual(expect.objectContaining(newDemand));
+    });
   });
 });

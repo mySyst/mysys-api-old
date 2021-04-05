@@ -1,27 +1,13 @@
-import { Controller, Get } from '@overnightjs/core';
+import { Controller, Post } from '@overnightjs/core';
 import { Request, Response } from 'express';
+import { Demands } from '@src/models/demands'
 
 @Controller('demands')
 export class DemandsController {
-  @Get('')
-  public getDemandsForLoggedUser(_: Request, res: Response): void {
-    res.send([
-      {
-        demands: [
-          {
-            id: 1,
-            title: 'Comprar leite',
-            description: 'Compras para tomar café da tarde',
-            time: '2021-04-02T08:00+00:00',
-          },
-          {
-            id: 2,
-            title: 'Comprar Café',
-            description: 'Compras para tomar café da tarde',
-            time: '2021-04-02T09:00+00:00',
-          },
-        ],
-      },
-    ]);
+  @Post('')
+  public async create(req: Request, res: Response): Promise<void> {
+    const demand = new Demands(req.body);
+    const result = await demand.save();
+    res.status(201).send(result);
   }
 }
