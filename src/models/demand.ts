@@ -23,4 +23,4 @@ const schema = new mongoose.Schema(
 );
 
 interface DemandsModel extends Omit<Demand, '_id'>, Document {}
-export const Demands: Model<DemandsModel> = mongoose.model('Demand', schema);
+export const Demand: Model<DemandsModel> = mongoose.model('Demand', schema);

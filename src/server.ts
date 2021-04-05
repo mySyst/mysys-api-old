@@ -5,6 +5,7 @@ import { AllDemandsController } from './controllers/allDemands';
 import { DemandsController } from './controllers/demands';
 
 import * as database from '@src/database';
+import { UsersController } from './controllers/users';
 
 export class SetupServer extends Server {
   constructor(private port = 3000) {
@@ -25,7 +26,8 @@ export class SetupServer extends Server {
   private SetupControllers(): void {
     const alldemandsController = new AllDemandsController();
     const demandsController = new DemandsController()
-    this.addControllers([demandsController, alldemandsController]);
+    const usersController = new UsersController()
+    this.addControllers([demandsController, alldemandsController, usersController]);
   }
 
   public getApp(): Application {

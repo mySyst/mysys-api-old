@@ -26,6 +26,6 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
-  "include": ["./src/**/*.ts", "./test/**/*.ts", "test/funcional/users.test.ts1", "src/controllers/demands.ts1", "test/funcional/allDemands.test.ts"],
+  "include": ["./src/**/*.ts", "./test/**/*.ts", "test/funcional/users.test.ts", "src/controllers/demands.ts1", "test/funcional/allDemands.test.ts"],
   "exclude": ["./node_modules/*", "dist"]
 }

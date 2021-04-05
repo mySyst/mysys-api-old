@@ -1,4 +1,9 @@
+import { Demand } from "@src/models/demand";
+
 describe('Demands functional test', () => {
+  beforeEach(async () => {
+    await Demand.deleteMany({});
+  });
   describe('When creating a demand', () => {
     it('should create a demand with success', async () => {
       const newDemand = {
