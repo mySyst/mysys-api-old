@@ -1,19 +1,20 @@
 {
   "name": "mysys-api",
-  "version": "1.0.0",
-  "license": "MIT",
+  "author": "brunocesarangst <bruno.angst@rede.ulbra.br>",
   "description": "App mySys - TypeScript, Nodejs, API",
-  "main": "index.js",
   "repository": "https://github.com/mySyst/mysys-api.git",
+  "license": "MIT",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
   "keywords": [
     "node.js",
     "api"
   ],
-  "author": "brunocesarangst <bruno.angst@rede.ulbra.br>",
   "scripts": {
     "build": "tsc",
     "start": "yarn build && node dist/src/index.js",
-    "start:dev": "ts-node-dev --transpile-only 'src/index.ts'",
+    "start:dev": "ts-node-dev --transpile-only src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "test:functional": "set NODE_ENV=development&& jest --projects ./test --forceExit --runInBand",
     "test:unit": "set NODE_ENV=development&& jest",

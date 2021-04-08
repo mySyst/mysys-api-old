@@ -9,13 +9,15 @@ import { BaseController } from '.';
 export class DemandsController extends BaseController {
   @Post('')
   public async create(req: Request, res: Response): Promise<void> {
+    console.log(req.body)
     try {
       const demand = new Demand({
         ...req.body,
         ...{ userId: req.context?.userId },
       });
-      const result = await demand.save();
-      res.status(201).send(result);
+      console.log(demand, req.body)
+      const newDemand = await demand.save();
+      res.status(201).send(newDemand);
     } catch (error) {
       this.sendCreateUpdateErrorResponse(res, error);
     }

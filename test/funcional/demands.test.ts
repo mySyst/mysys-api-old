@@ -20,7 +20,7 @@ describe('Demands functional test', () => {
   });
 
   describe('When creating a new demand', () => {
-    it('should create a demand with success', async () => {
+    it.only('should create a demand with success', async () => {
       const newDemand = {
         title: 'comprar limão',
         describe: 'Para o café da tarde',

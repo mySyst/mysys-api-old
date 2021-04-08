@@ -1,16 +1,22 @@
 import mongoose, { Document, Model, Schema } from 'mongoose';
 
 export interface Demand {
-  _id?: string;
+  userId: string;
   title: string;
   describe: string;
+  createdAt: Date;
+  updatedAt: Date;
+  _id?: string;
 }
 
+// const schema = new mongoose.Schema<Demand>(
 const schema = new mongoose.Schema(
   {
-    title: { type: String, required: true },
-    describe: { type: String, required: false },
-    user: { type: Schema.Types.ObjectId, ref: 'User', require: true },
+    title: { type: String },
+    describe: { type: String },
+    createdAt: { type: Date, default: Date.now },
+    updatedAt: { type: Date, default: Date.now },
+    userId: { type: Schema.Types.ObjectId, ref: 'User', require: true },
   },
   {
     toJSON: {
