@@ -9,12 +9,10 @@ export class AllDemandsController {
       {
         demands: [
           {
-            id: 1,
             title: 'Comprar leite',
             description: 'Compras para tomar café da tarde',
           },
           {
-            id: 2,
             title: 'Comprar Café',
             description: 'Compras para tomar café da tarde',
           },
