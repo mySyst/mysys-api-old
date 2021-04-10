@@ -1,8 +1,9 @@
 import { Demand } from "@src/models/demand";
 import { User } from '@src/models/user';
 import AuthService from '@src/services/auth';
+import nock from 'nock';
 
-describe('Demands funcional test', () => {
+describe('Testing functions for all demands', () => {
   const defaultUser = {
     name: 'John Doe',
     email: 'john@mail.com',
@@ -26,6 +27,7 @@ describe('Demands funcional test', () => {
   });
 
   it('should return a list of demands from the authenticated user in the application', async () => {
+    nock.recorder.rec();
     const { body, status } = await global.testRequest
       .get('/alldemands')
       .set({ 'x-access-token': token });
