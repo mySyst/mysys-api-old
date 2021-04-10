@@ -1,23 +1,25 @@
-import { Controller, Get } from '@overnightjs/core';
+import { ClassMiddleware, Controller, Get } from '@overnightjs/core';
 import { Request, Response } from 'express';
+import { Demand } from '@src/models/demand';
+import { authMiddleware } from '@src/middlewares/auth';
+import { BaseController } from '.'
+
+// const allDemands = []
 
 @Controller('alldemands')
-export class AllDemandsController {
+@ClassMiddleware(authMiddleware)
+export class AllDemandsController extends BaseController  {
   @Get('')
-  public getAllDemandsForLoggedUser(_: Request, res: Response): void {
-    res.send([
-      {
-        demands: [
-          {
-            title: 'Comprar leite',
-            description: 'Compras para tomar café da tarde',
-          },
-          {
-            title: 'Comprar Café',
-            description: 'Compras para tomar café da tarde',
-          },
-        ],
-      },
-    ]);
+  public async getAllDemandsForLoggedUser(req: Request, res: Response): Promise<void> {
+    console.log(req.context)
+    try {
+      const demands: Array<Demand> = await Demand.find(
+        { userId: req.context?.userId }
+        );
+      console.log('The demandas ', demands)
+      res.status(200).send(demands)
+    } catch (error) {
+      this.sendCreateUpdateErrorResponse(res, error);
+    }
   }
 }

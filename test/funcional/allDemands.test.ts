@@ -25,7 +25,7 @@ describe('Demands funcional test', () => {
     token = AuthService.generateToken(user.id);
   });
 
-  it('should return a demand simple', async () => {
+  it('should return a list of demands from the authenticated user in the application', async () => {
     const { body, status } = await global.testRequest
       .get('/alldemands')
       .set({ 'x-access-token': token });
