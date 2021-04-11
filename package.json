@@ -5,6 +5,10 @@
   "repository": "https://github.com/mySyst/mysys-api.git",
   "license": "MIT",
   "version": "1.0.0",
+  "engines": {
+    "node": "15.2.1",
+    "yarn": "1.22.5"
+  },
   "private": true,
   "main": "index.js",
   "keywords": [
