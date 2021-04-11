@@ -12,8 +12,8 @@
     "api"
   ],
   "scripts": {
-    "build:prod": "set NODE_ENV=production&& tsc",
-    "build:dev": "set NODE_ENV=development&& tsc",
+    "build:prod": "cross-env set NODE_ENV=production&& tsc",
+    "build:dev": "cross-env set NODE_ENV=development&& tsc",
     "start:prod": "yarn build:prod && node dist/src/index.js",
     "start:dev": "cross-env NODE_ENV=development ts-node-dev --transpile-only src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
