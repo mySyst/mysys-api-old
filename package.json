@@ -17,6 +17,7 @@
   ],
   "scripts": {
     "ts:watch": "tsc -w",
+    "postinstall": "tsc",
     "ts:build": "tsc",
     "build": "yarn ts:build",
     "server": "node dist/src/index.js",
