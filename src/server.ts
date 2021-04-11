@@ -1,6 +1,7 @@
 import './util/module-alias';
 import { Server } from '@overnightjs/core';
 import express, { Application } from 'express';
+import cors from 'cors';
 import { AllDemandsController } from './controllers/allDemands';
 import { DemandsController } from './controllers/demands';
 
@@ -21,6 +22,11 @@ export class SetupServer extends Server {
   private SetupExpress(): void {
     this.app.use(express.json());
     this.SetupControllers();
+    this.app.use(
+      cors({
+        origin: '*',
+      })
+    )
   }
 
   private SetupControllers(): void {
