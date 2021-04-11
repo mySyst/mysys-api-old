@@ -17,10 +17,11 @@
   ],
   "scripts": {
     "ts:watch": "tsc -w",
-    "postinstall": "tsc",
+    "tsc": "tsc",
+    "postinstall": "yarn tsc",
     "ts:build": "tsc",
     "build": "yarn ts:build",
-    "server": "cross-env NODE_ENV=production dist/src/index.js",
+    "server": "set NODE_ENV=production node dist/src/index.js",
     "start": "yarn build && yarn server",
     "start:tsc": "ts-node-dev --transpile-only 'src/index.ts'",
     "test": "echo \"Error: no test specified\" && exit 1",
