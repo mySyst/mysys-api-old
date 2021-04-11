@@ -12,7 +12,8 @@
     "api"
   ],
   "scripts": {
-    "build": "set NODE_ENV=production && tsc",
+    "build": "tsc",
+    "heroku-postbuild": "ng build --prod",
     "start": "yarn build && node dist/src/index.js",
     "start:local": "ts-node-dev --transpile-only 'src/index.ts'",
     "test": "echo \"Error: no test specified\" && exit 1",
