@@ -9,7 +9,7 @@ import * as database from '@src/database';
 import { UsersController } from './controllers/users';
 
 export class SetupServer extends Server {
-  constructor(private url = process.env.APP_URL) {
+  constructor(private port: string | number = process.env.PORT || 3000) {
     super();
   }
 
@@ -49,8 +49,8 @@ export class SetupServer extends Server {
   }
   
   public start(): void {
-    this.app.listen(process.env.PORT || this.url, () => {
-      console.info('Server listening on port: ' + this.url);
+    this.app.listen(process.env.PORT || this.port, () => {
+      console.info('Server listening on port: ' + this.port);
     });
   }
 }
