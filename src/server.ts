@@ -8,7 +8,7 @@ import * as database from '@src/database';
 import { UsersController } from './controllers/users';
 
 export class SetupServer extends Server {
-  constructor(private port = 3000) {
+  constructor(private url = process.env.APP_URL) {
     super();
   }
 
@@ -43,8 +43,8 @@ export class SetupServer extends Server {
   }
   
   public start(): void {
-    this.app.listen(this.port, () => {
-      console.info('Server listening on port: ' + this.port);
+    this.app.listen(this.url, () => {
+      console.info('Server listening on port: ' + this.url);
     });
   }
 }
