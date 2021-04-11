@@ -12,9 +12,9 @@
     "api"
   ],
   "scripts": {
-    "build": "tsc",
-    "start:": "yarn build && node dist/src/index.js",
-    "start:prod": "set NODE_ENV=production&& node dist/src/index.js",
+    "build:prod": "set NODE_ENV=production&& tsc",
+    "build:dev": "set NODE_ENV=development&& tsc",
+    "start:prod": "yarn build:prod && node dist/src/index.js",
     "start:dev": "cross-env NODE_ENV=development ts-node-dev --transpile-only src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "test:functional": "set NODE_ENV=development&& jest --projects ./test --forceExit --runInBand",
