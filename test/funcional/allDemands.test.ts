@@ -1,4 +1,4 @@
-import { Demand } from "@src/models/demand";
+import { Demand } from '@src/models/demand';
 import { User } from '@src/models/user';
 import AuthService from '@src/services/auth';
 
@@ -18,7 +18,7 @@ describe('Demands funcional test', () => {
     const defaultDemand = {
       title: 'Demanda A',
       describe: 'A demanda',
-      user: user.id
+      user: user.id,
     };
     await new Demand(defaultDemand).save();
     // LGPD e JSON Web Token
