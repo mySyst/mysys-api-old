@@ -16,14 +16,9 @@
     "api"
   ],
   "scripts": {
-    "ts:watch": "tsc -w",
-    "tsc": "tsc",
-    "postinstall": "yarn tsc",
-    "ts:build": "tsc",
-    "build": "yarn ts:build",
-    "server": "set NODE_ENV=production node dist/src/index.js",
-    "start": "yarn build && yarn server",
-    "start:tsc": "ts-node-dev --transpile-only 'src/index.ts'",
+    "build": "tsc",
+    "start": "yarn build && node dist/src/index.js",
+    "start:local": "ts-node-dev --transpile-only 'src/index.ts'",
     "test": "echo \"Error: no test specified\" && exit 1",
     "test:functional": "set NODE_ENV=development&& jest --projects ./test --forceExit --runInBand",
     "test:unit": "set NODE_ENV=development&& jest",
