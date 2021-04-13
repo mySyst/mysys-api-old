@@ -16,10 +16,8 @@
     "api"
   ],
   "scripts": {
-    "build": "tsc",
-    "start": "yarn build && node dist/index.js",
-    "build:prod": "babel src --extensions \".js, .ts\" --out-dir dist --copy-files --no-copy-ignored",
-    "start:prod": "node dist/index.js",
+    "build": "babel src --extensions \".js, .ts\" --out-dir dist --copy-files --no-copy-ignored",
+    "start": "node dist/index.js",
     "start:local": "ts-node-dev --transpile-only 'src/index.ts'",
     "test": "echo \"Error: no test specified\" && exit 1",
     "test:functional": "set NODE_ENV=development&& jest --projects ./test --forceExit --runInBand",
