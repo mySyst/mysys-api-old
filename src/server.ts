@@ -9,7 +9,9 @@ import * as database from '@src/database';
 import { UsersController } from './controllers/users';
 
 export class SetupServer extends Server {
-  constructor(private port: string | number = process.env.PORT || 3000) {
+  constructor(
+    private port: string | number = process.env.PORT || 3000 || '0.0.0.0'
+  ) {
     super();
   }
 
