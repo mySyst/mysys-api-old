@@ -20,7 +20,7 @@
     "heroku-postbuild": "export YARN_CONFIG_PRODUCTION=true; export NODE_ENV=production;",
     "start": "tsc",
     "start:dev": "yarn start && node dist/src/index.js",
-    "build": "cross-env NODE_ENV=production tsc",
+    "build": "export NODE_ENV=production tsc",
     "start:deploy": "yarn build && node dist/src/index.js",
     "start:local": "ts-node-dev --transpile-only src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
