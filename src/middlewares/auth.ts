@@ -10,7 +10,7 @@ export function authMiddleware(
   try {
     const claims = AuthService.decodeToken(token as string);
     req.context = { userId: claims.sub };
-    console.log('Request URL ', req.originalUrl)
+    console.log('Request URL ', req.originalUrl);
     next();
   } catch (err) {
     res.status?.(401).send({ code: 401, error: err.message });
