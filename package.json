@@ -9,6 +9,7 @@
     "node": "15.2.1",
     "yarn": "1.22.5"
   },
+  "test": "test",
   "private": true,
   "main": "index.js",
   "keywords": [
@@ -23,13 +24,14 @@
     "build": "export NODE_ENV=production tsc",
     "start:deploy": "yarn build && node dist/src/index.js",
     "start:local": "ts-node-dev --transpile-only src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "yarn test:unit",
     "test:functional": "set NODE_ENV=development&& jest --projects ./test --forceExit --runInBand",
     "test:unit": "set NODE_ENV=development&& jest",
     "lint": "eslint ./src ./test --ext .ts",
     "lint:fix": "eslint ./src ./test --ext .ts --fix",
     "style:check": "prettier --check \"src/**/*.ts\" \"test/**/*.ts\"",
-    "style:fix": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\""
+    "style:fix": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "commit": "git add . && npx cz"
   },
   "husky": {
     "hooks": {
@@ -60,7 +62,7 @@
     "@typescript-eslint/parser": "^4.20.0",
     "babel-plugin-module-resolver": "^4.1.0",
     "commitizen": "^4.2.3",
-    "cz-conventional-changelog": "3.3.0",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.23.0",
     "husky": "^6.0.0",
     "jest": "^26.6.3",
