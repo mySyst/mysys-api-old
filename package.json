@@ -31,7 +31,7 @@
     "lint:fix": "eslint ./src ./test --ext .ts --fix",
     "style:check": "prettier --check \"src/**/*.ts\" \"test/**/*.ts\"",
     "style:fix": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "commit": "git add . && npx cz"
+    "commit": "git add . && npx cz && git push"
   },
   "husky": {
     "hooks": {
