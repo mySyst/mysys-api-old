@@ -10,6 +10,10 @@
   {
     "title": "Title of the demand 2",
     "describe": "Describe the demand 2",
+    "class": "date",
+    "context": "rua",
+    "delegate": "foo",
+    "date": "23/05/1987",
     "userId": "60722f2a5d0a9c1bfcc85836",
     "createdAt": "2021-04-10T23:06:06.666Z",
     "updatedAt": "2021-04-10T23:06:06.666Z",
