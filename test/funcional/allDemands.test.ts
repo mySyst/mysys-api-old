@@ -1,8 +1,10 @@
 import { Demand } from '@src/models/demand';
 import { User } from '@src/models/user';
 import AuthService from '@src/services/auth';
+import { Mongoose } from 'mongoose';
+import nock from 'nock';
 
-describe('Demands funcional test', () => {
+describe('Testing functions for all demands', () => {
   const defaultUser = {
     name: 'John Doe',
     email: 'john@mail.com',
@@ -10,19 +12,31 @@ describe('Demands funcional test', () => {
   };
 
   let token: string;
+  let userId: string;
+  let createdAt: Date;
+  let updatedAt: Date;
 
   beforeEach(async () => {
     await Demand.deleteMany({});
     await User.deleteMany({});
     const user = await new User(defaultUser).save();
+    userId = user.id;
+    token = AuthService.generateToken(user.id);
     const defaultDemand = {
       title: 'Demanda A',
       describe: 'A demanda',
-      user: user.id,
+      userId: user.id,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
+    };
+    const defaultDemand1 = {
+      title: 'Demanda B',
+      describe: 'B demanda',
+      userId: user.id,
     };
     await new Demand(defaultDemand).save();
-    // LGPD e JSON Web Token
-    token = AuthService.generateToken(user.id);
+    await new Demand(defaultDemand1).save();
+    nock.recorder.rec();
   });
 
   it('should return a list of demands from the authenticated user in the application', async () => {
@@ -34,15 +48,22 @@ describe('Demands funcional test', () => {
       {
         demands: [
           {
-            title: 'Comprar leite',
-            description: 'Compras para tomar café da tarde',
+            title: 'Demanda A',
+            describe: 'A demanda',
+            userId: userId,
+            createdAt: createdAt,
+            updatedAt: updatedAt,
           },
           {
-            title: 'Comprar Café',
-            description: 'Compras para tomar café da tarde',
+            title: 'Demanda B',
+            describe: 'B demanda',
+            userId: userId,
+            createdAt: createdAt,
+            updatedAt: updatedAt,
           },
         ],
       },
     ]);
+    nock.recorder.rec();
   });
 });

@@ -1,0 +1,12 @@
+{
+  "App": {
+    "database": {
+      "mongoUrl": "mongodb+srv://mbcangst:Bruno4n657@mysystest.rtmpx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+    },
+
+    "auth": {
+      "key": "some-key",
+      "tokenExpiresIn": "20000000"
+    }
+  }
+}

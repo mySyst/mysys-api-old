@@ -4,8 +4,6 @@ import { Demand } from '@src/models/demand';
 import { authMiddleware } from '@src/middlewares/auth';
 import { BaseController } from '.';
 
-// const allDemands = []
-
 @Controller('alldemands')
 @ClassMiddleware(authMiddleware)
 export class AllDemandsController extends BaseController {
