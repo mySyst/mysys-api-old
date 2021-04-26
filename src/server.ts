@@ -2,11 +2,13 @@ import './util/module-alias';
 import { Server } from '@overnightjs/core';
 import express, { Application } from 'express';
 import cors from 'cors';
-import { AllDemandsController } from './controllers/allDemands';
-import { DemandsController } from './controllers/demands';
 
 import * as database from '@src/database';
+
+import { AllDemandsController } from './controllers/allDemands';
+import { DemandsController } from './controllers/demands';
 import { UsersController } from './controllers/users';
+import { ClarifyDemand } from './controllers/clarifyDemand';
 
 console.log(process.env.MONGO_URL)
 
@@ -37,10 +39,12 @@ export class SetupServer extends Server {
     const alldemandsController = new AllDemandsController();
     const demandsController = new DemandsController();
     const usersController = new UsersController();
+    const clarifyDemand = new ClarifyDemand();
     this.addControllers([
       demandsController,
       alldemandsController,
       usersController,
+      clarifyDemand,
     ]);
   }
 
