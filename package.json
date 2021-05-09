@@ -6,8 +6,8 @@
   "license": "MIT",
   "version": "1.0.0",
   "engines": {
-    "node": "15.2.1",
-    "yarn": "1.22.5"
+    "node": "16.0.0",
+    "yarn": "1.22.10"
   },
   "test": "test",
   "private": true,
@@ -30,7 +30,14 @@
     "lint": "eslint ./src ./test --ext .ts",
     "lint:fix": "eslint ./src ./test --ext .ts --fix",
     "style:check": "prettier --check \"src/**/*.ts\" \"test/**/*.ts\"",
-    "style:fix": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\""
+    "style:fix": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "commit": "git add . && npx cz && git push"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
+    }
   },
   "devDependencies": {
     "@babel/cli": "^7.13.14",
@@ -80,5 +87,10 @@
     "module-alias": "^2.2.2",
     "mongoose": "^5.12.3",
     "ts-node": "^9.1.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

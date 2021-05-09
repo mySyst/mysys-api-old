@@ -10,7 +10,7 @@ import { DemandsController } from './controllers/demands';
 import { UsersController } from './controllers/users';
 import { ClarifyDemand } from './controllers/clarifyDemand';
 
-console.log(process.env.MONGO_URL)
+console.log(process.env.MONGO_URL);
 
 export class SetupServer extends Server {
   constructor(
