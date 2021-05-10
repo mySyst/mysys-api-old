@@ -22,8 +22,8 @@ describe('Demands functional test', () => {
   describe('When creating a new demand', () => {
     it('should create a demand with success', async () => {
       const newDemand = {
-        title: 'comprar limão',
-        describe: 'Para o café da tarde',
+        title: 'Demanda A',
+        describe: 'A demanda',
       };
 
       const response = await global.testRequest
@@ -41,8 +41,8 @@ describe('Demands functional test', () => {
       .spyOn(Demand.prototype, 'save')
       .mockImplementationOnce(() => Promise.reject('fail to create Demands'));
     const newDemands = {
-      title: 'comprar limão',
-      describe: 'Para o café da tarde',
+      title: 'Demanda A',
+      describe: 'A demanda',
     };
 
     const response = await global.testRequest

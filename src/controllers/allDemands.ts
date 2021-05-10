@@ -17,7 +17,7 @@ export class AllDemandsController extends BaseController {
       const demands: Array<Demand> = await Demand.find({
         userId: req.context?.userId,
       });
-      console.log('The demandas ', demands);
+      console.log('The demands ', demands);
       res.status(200).send(demands);
     } catch (error) {
       this.sendCreateUpdateErrorResponse(res, error);

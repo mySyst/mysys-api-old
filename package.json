@@ -25,7 +25,7 @@
     "start:deploy": "yarn build && node dist/src/index.js",
     "start:local": "ts-node-dev --transpile-only src/index.ts",
     "test": "yarn test:unit",
-    "test:functional": "jest --projects ./test --forceExit --runInBand",
+    "test:functional": "jest --projects ./test --forceExit --runInBand --detectOpenHandles",
     "test:unit": "jest",
     "lint": "eslint ./src ./test --ext .ts",
     "lint:fix": "eslint ./src ./test --ext .ts --fix",
