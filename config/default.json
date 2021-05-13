@@ -2,13 +2,12 @@
   "App": {
     "port": 3000,
     "database": {
-      // "mongoUrl": "mongodb+srv://mysys:Bruno4n657@mysys.incpz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
-       "mongoUrl": "mongodb://localhost:27017/demands" 
+      "mongoUrl": "mongodb://localhost:27017/demands" 
     },
 
     "auth": {
       "key": "some-key",
-      "tokenExpiresIn": "20000000"
+      "tokenExpiresIn": "183 days"
     }
   }
 }

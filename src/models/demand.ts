@@ -26,6 +26,8 @@ export interface Demand {
   describe?: string;
   detail?: string;
   trash: boolean;
+  project: boolean;
+  completed: boolean;
   classification: Clarify;
   delegate: string;
   date: Date;
@@ -42,6 +44,8 @@ const schema = new mongoose.Schema(
     describe: { type: String },
     detail: { type: String },
     trash: Boolean,
+    completed: Boolean,
+    project: Boolean,
     classification: { type: String, enum: Clarify },
     delegate: { type: String },
     date: { type: String },
