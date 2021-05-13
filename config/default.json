@@ -2,7 +2,7 @@
   "App": {
     "port": 3000,
     "database": {
-      "mongoUrl": "mongodb://localhost:27017/demands" 
+      "mongoUrl": "mongodb+srv://mysys:Bruno4n657@mysys.incpz.mongodb.net/mysys?retryWrites=true&w=majority" 
     },
 
     "auth": {
