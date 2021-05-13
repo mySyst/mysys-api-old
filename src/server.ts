@@ -9,8 +9,7 @@ import { AllDemandsController } from './controllers/allDemands';
 import { DemandsController } from './controllers/demands';
 import { UsersController } from './controllers/users';
 import { ClarifyDemand } from './controllers/clarifyDemand';
-
-console.log(process.env.MONGO_URL)
+import { ProjectsController } from './controllers/project';
 
 export class SetupServer extends Server {
   constructor(
@@ -40,11 +39,13 @@ export class SetupServer extends Server {
     const demandsController = new DemandsController();
     const usersController = new UsersController();
     const clarifyDemand = new ClarifyDemand();
+    const projectsController = new ProjectsController();
     this.addControllers([
       demandsController,
       alldemandsController,
       usersController,
       clarifyDemand,
+      projectsController,
     ]);
   }
 

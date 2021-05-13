@@ -13,7 +13,7 @@ export enum Clarify {
 export enum Context {
   none = '',
   house = 'house',
-  road  = 'road',
+  road = 'road',
   smartphone = 'smartphone',
   computer = 'computer',
   desk = 'desk',
@@ -26,6 +26,8 @@ export interface Demand {
   describe?: string;
   detail?: string;
   trash: boolean;
+  project: boolean;
+  completed: boolean;
   classification: Clarify;
   delegate: string;
   date: Date;
@@ -40,12 +42,14 @@ const schema = new mongoose.Schema(
   {
     title: { type: String, require: true },
     describe: { type: String },
-    detail: {type: String},
+    detail: { type: String },
     trash: Boolean,
-    classification: {type: String},
-    delegate: {type: String},
-    date: {type: String},
-    context: {type: String},
+    completed: Boolean,
+    project: Boolean,
+    classification: { type: String, enum: Clarify },
+    delegate: { type: String },
+    date: { type: String },
+    context: { type: String, enum: Context },
     userId: { type: Schema.Types.ObjectId, ref: 'User', require: true },
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
