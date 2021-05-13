@@ -16,7 +16,9 @@
     "node.js",
     "api"
   ],
-  "scripts": {    
+  "scripts": {
+    "heroku-prebuild": "set YARN_CONFIG_PRODUCTION=false; set NODE_ENV=; YARN_CONFIG_PRODUCTION=false NODE_ENV=development yarn install --only=dev --dev",
+    "heroku-postbuild": "set YARN_CONFIG_PRODUCTION=true; set NODE_ENV=production;",
     "start": "tsc",
     "start:dev": "yarn start && node dist/src/index.js",
     "build": "set NODE_ENV=production tsc",
