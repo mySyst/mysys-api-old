@@ -1,3 +1,7 @@
+require('dotenv').config({
+  path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env',
+});
+
 import './util/module-alias';
 import { Server } from '@overnightjs/core';
 import express, { Application } from 'express';
@@ -13,7 +17,7 @@ import { ProjectsController } from './controllers/project';
 
 export class SetupServer extends Server {
   constructor(
-    private port: string | number = process.env.PORT || 3000 || '0.0.0.0'
+    private port = process.env.PORT
   ) {
     super();
   }
