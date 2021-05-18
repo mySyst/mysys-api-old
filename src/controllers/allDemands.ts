@@ -12,7 +12,7 @@ export class AllDemandsController extends BaseController {
     req: Request,
     res: Response
   ): Promise<void> {
-    console.log(req.context);
+    console.log(req.body);
     try {
       const demands: Array<Demand> = await Demand.find({
         userId: req.context?.userId,
