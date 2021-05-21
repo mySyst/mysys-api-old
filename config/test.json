@@ -5,8 +5,7 @@
     },
 
     "auth": {
-      "key": "some-key",
-      "tokenExpiresIn": "20000000"
+      "key": "some-key"
     }
   }
 }

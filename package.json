@@ -23,7 +23,7 @@
     "build": "NODE_ENV=production tsc",
     "start:deploy": "yarn build && node dist/src/index.js",
     "start:local": "NODE_ENV=test ts-node-dev --transpile-only src/index.ts",
-    "test": "yarn test:unit",
+    "test": "NODE_ENV=test yarn test:unit",
     "test:functional": "jest --projects ./test --forceExit --runInBand --detectOpenHandles",
     "test:unit": "jest",
     "lint": "eslint ./src ./test --ext .ts",

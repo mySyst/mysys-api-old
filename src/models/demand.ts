@@ -27,6 +27,7 @@ export interface Demand {
   detail?: string;
   trash: boolean;
   project: boolean;
+  idProject: string,
   completed: boolean;
   classification: Clarify;
   delegate: string;
@@ -46,6 +47,7 @@ const schema = new mongoose.Schema(
     trash: Boolean,
     completed: Boolean,
     project: Boolean,
+    idProject: { type: Schema.Types.ObjectId, ref: 'Project', require:true },
     classification: { type: String, enum: Clarify },
     delegate: { type: String },
     date: { type: String },

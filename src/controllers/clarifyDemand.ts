@@ -20,6 +20,11 @@ export class ClarifyDemand extends BaseController {
         });
         const newProject = await isAProject.save();
         res.status(201).send(newProject);
+        try {
+          await Demand.findByIdAndRemove({ _id: id });
+        } catch (error) {
+          this.sendCreateUpdateErrorResponse(res, error);
+        }
       } catch (error) {
         this.sendCreateUpdateErrorResponse(res, error);
       }
