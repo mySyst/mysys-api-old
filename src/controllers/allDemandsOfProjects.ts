@@ -8,15 +8,13 @@ import { Demand } from '@src/models/demand';
 @ClassMiddleware(authMiddleware)
 export class AllDemandsOfProjectController extends BaseController {
   @Get(':id')
-  public async getAllProjectsForLoggedUser(
+  public async getAllDemandsOfProjectForLoggedUser(
     req: Request,
     res: Response
   ): Promise<void> {
-    const id = req.params;
-    console.log(id);
     try {
       const demands: Array<Demand> = await Demand.find({
-        idProject: id,
+        idProject: req.params.id,
         userId: req.context?.userId,
       });
       console.log('The demands the project ', demands);
