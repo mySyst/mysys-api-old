@@ -1,6 +1,6 @@
 import httpStatusCodes from 'http-status-codes';
 
-export interface APIError {
+export interface IAPIError {
   message: string;
   code: number;
   codeAsString?: string; //allow to override the default error code as string
@@ -8,12 +8,12 @@ export interface APIError {
   documentation?: string;
 }
 
-export interface APIErrorResponse extends Omit<APIError, 'codeAsString'> {
+export interface APIErrorResponse extends Omit<IAPIError, 'codeAsString'> {
   error: string;
 }
 
 export default class ApiError {
-  public static format(error: APIError): APIErrorResponse {
+  public static format(error: IAPIError): APIErrorResponse {
     return {
       ...{
         message: error.message,

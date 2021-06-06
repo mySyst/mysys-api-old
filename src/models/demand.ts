@@ -27,7 +27,8 @@ export interface Demand {
   detail?: string;
   trash: boolean;
   project: boolean;
-  idProject?: string,
+  idProject?: string;
+  level: number;
   completed: boolean;
   classification: Clarify;
   delegate: string;
@@ -48,6 +49,7 @@ const schema = new mongoose.Schema(
     completed: Boolean,
     project: Boolean,
     idProject: { type: String },
+    level: { type: Number },
     classification: { type: String, enum: Clarify },
     delegate: { type: String },
     date: { type: String },

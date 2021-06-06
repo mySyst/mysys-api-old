@@ -2,7 +2,7 @@ import { Response } from 'express';
 import mongoose from 'mongoose';
 import { CUSTOM_VALIDATION } from '@src/models/user';
 
-import ApiError, { APIError } from '@src/util/errors/api-error';
+import ApiError, { IAPIError } from '@src/util/errors/api-error';
 
 export abstract class BaseController {
   protected sendCreateUpdateErrorResponse(
@@ -31,7 +31,7 @@ export abstract class BaseController {
     return { code: 422, error: error.message };
   }
 
-  protected sendErrorResponse(res: Response, apiError: APIError): Response {
+  protected sendErrorResponse(res: Response, apiError: IAPIError): Response {
     return res.status(apiError.code).send(ApiError.format(apiError));
   }
 }
