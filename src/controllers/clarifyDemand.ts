@@ -1,6 +1,6 @@
 import { ClassMiddleware, Controller, Put } from '@overnightjs/core';
 import { Request, Response } from 'express';
-import { Demand, DemandsModel } from '@src/models/demand';
+import { Demand } from '@src/models/demand';
 import { authMiddleware } from '@src/middlewares/auth';
 import { BaseController } from '.';
 import { type } from 'node:os';
@@ -30,21 +30,20 @@ export class ClarifyDemand extends BaseController {
       });
 
       if (typeof demand?.level !== 'undefined') {
-        console.log('que merda');
-
         const levelOfDemand = demand?.level;
 
         if (project === true && demand?.level < 2) {
-          console.log('deu erro');
           // elevando o nível do projeto pai
           const newLevel = levelOfDemand + 1;
           try {
-            const project = await Demand.findOneAndUpdate(
+            await Demand.findOneAndUpdate(
               { _id: id },
               { level: newLevel },
               { new: true }
             );
-            res.status(200).send({ code: 200, msg: 'Action successfully accomplished' });
+            res
+              .status(200)
+              .send({ code: 200, msg: 'Action successfully accomplished' });
           } catch (error) {
             this.sendCreateUpdateErrorResponse(res, error);
           }
