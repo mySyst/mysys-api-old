@@ -1,8 +1,9 @@
 import { ClassMiddleware, Controller, Put } from '@overnightjs/core';
 import { Request, Response } from 'express';
-import { Demand } from '@src/models/demand';
+import { Demand, DemandsModel } from '@src/models/demand';
 import { authMiddleware } from '@src/middlewares/auth';
 import { BaseController } from '.';
+import { type } from 'node:os';
 
 @Controller('alldemands')
 @ClassMiddleware(authMiddleware)
@@ -28,27 +29,30 @@ export class ClarifyDemand extends BaseController {
         _id: idProject,
       });
 
-      const levelOfDemand: number | undefined = demand?.level;
+      if (typeof demand?.level !== 'undefined') {
+        console.log('que merda');
 
-      console.log(project, idProject, demand?.level);
+        const levelOfDemand = demand?.level;
 
-      if (project === true && demand?.level < 2) {
-
-        console.log('deu erro')
-        // elevando o nível do projeto pai
-        const newLevel = levelOfDemand + 1;
-        try {
-          await Demand.findOneAndUpdate(
-            { _id: id },
-            { level: newLevel },
-            { new: true }
-          );
-        } catch (error) {
-          this.sendCreateUpdateErrorResponse(res, error);
+        if (project === true && demand?.level < 2) {
+          console.log('deu erro');
+          // elevando o nível do projeto pai
+          const newLevel = levelOfDemand + 1;
+          try {
+            const project = await Demand.findOneAndUpdate(
+              { _id: id },
+              { level: newLevel },
+              { new: true }
+            );
+            res.status(200).send({ code: 200, msg: 'Action successfully accomplished' });
+          } catch (error) {
+            this.sendCreateUpdateErrorResponse(res, error);
+          }
+        } else {
+          res
+            .status(203)
+            .send({ code: 203, error: 'This action is not authorized' });
         }
-      } else {
-        res.status(203)
-        .send({ code: 203, error: 'This action is not authorized' });
       }
     }
   }

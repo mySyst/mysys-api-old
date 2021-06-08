@@ -28,7 +28,7 @@ export interface Demand {
   trash: boolean;
   project: boolean;
   idProject?: string;
-  level: number | undefined;
+  level: number;
   completed: boolean;
   classification: Clarify;
   delegate: string;
