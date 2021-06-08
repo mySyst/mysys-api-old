@@ -28,13 +28,13 @@ export interface Demand {
   trash: boolean;
   project: boolean;
   idProject?: string;
-  level: number;
+  level: number | undefined;
   completed: boolean;
   classification: Clarify;
   delegate: string;
   date: Date;
   context: Context;
-  userId: string;
+  // userId: string;
   createdAt: Date;
   updatedAt: Date;
 }

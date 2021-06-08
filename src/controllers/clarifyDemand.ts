@@ -12,35 +12,43 @@ export class ClarifyDemand extends BaseController {
     const { id } = req.params;
     const { project, idProject } = req.body;
 
-    try {
-      const upDemand = await Demand.findOneAndUpdate({ _id: id }, req.body, {
-        new: true,
-      });
-      res.status(200).send(upDemand);
-      console.log(upDemand);
-    } catch (error) {
-      this.sendCreateUpdateErrorResponse(res, error);
-    }
-
-    // procurando a demand_projeto
-    const demand = await Demand.findById({
-      _id: idProject,
-    });
-
-    const levelOfDemand: number | undefined = demand?.level;
-
-    if (project === true && idProject !== '' && demand?.level !== 3) {
-      // elevando o nível do projeto pai
-      const newLevel = levelOfDemand + 1;
-
+    if (idProject === '') {
       try {
-        await Demand.findOneAndUpdate(
-          { _id: idProject },
-          { level: newLevel },
-          { new: true }
-        );
+        const upDemand = await Demand.findOneAndUpdate({ _id: id }, req.body, {
+          new: true,
+        });
+        res.status(200).send(upDemand);
+        console.log(upDemand);
       } catch (error) {
         this.sendCreateUpdateErrorResponse(res, error);
+      }
+    } else {
+      // procurando a demand_projeto
+      const demand = await Demand.findById({
+        _id: idProject,
+      });
+
+      const levelOfDemand: number | undefined = demand?.level;
+
+      console.log(project, idProject, demand?.level);
+
+      if (project === true && demand?.level < 2) {
+
+        console.log('deu erro')
+        // elevando o nível do projeto pai
+        const newLevel = levelOfDemand + 1;
+        try {
+          await Demand.findOneAndUpdate(
+            { _id: id },
+            { level: newLevel },
+            { new: true }
+          );
+        } catch (error) {
+          this.sendCreateUpdateErrorResponse(res, error);
+        }
+      } else {
+        res.status(203)
+        .send({ code: 203, error: 'This action is not authorized' });
       }
     }
   }

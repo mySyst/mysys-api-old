@@ -14,8 +14,8 @@ export class AllDemandsOfProjectController extends BaseController {
   ): Promise<void> {
     try {
       const demands: Array<Demand> = await Demand.find({
-        idProject: req.params.id,
         userId: req.context?.userId,
+        idProject: req.params.id,
       });
       console.log('The demands the project ', demands);
       res.status(200).send(demands);
