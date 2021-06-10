@@ -34,7 +34,7 @@ export interface Demand {
   delegate: string;
   date: Date;
   context: Context;
-  // userId: string;
+  userId: string;
   createdAt: Date;
   updatedAt: Date;
 }
