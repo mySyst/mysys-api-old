@@ -3,7 +3,6 @@ import { Request, Response } from 'express';
 import { Demand } from '@src/models/demand';
 import { authMiddleware } from '@src/middlewares/auth';
 import { BaseController } from '.';
-import { type } from 'node:os';
 
 @Controller('alldemands')
 @ClassMiddleware(authMiddleware)
@@ -13,7 +12,7 @@ export class ClarifyDemand extends BaseController {
     const { id } = req.params;
     const { project, idProject } = req.body;
 
-    if (idProject === '') {
+    if ((idProject !== ''|| idProject !== undefined) && project !== true)  {
       try {
         const upDemand = await Demand.findOneAndUpdate({ _id: id }, req.body, {
           new: true,
@@ -29,14 +28,11 @@ export class ClarifyDemand extends BaseController {
         _id: idProject,
       });
 
-      if (typeof demand?.level !== 'undefined') {
-        const levelOfDemand = demand?.level;
-
         if (project === true && demand?.level < 2) {
           // elevando o nível do projeto pai
-          const newLevel = levelOfDemand + 1;
+          const newLevel = demand?.level + 1;
           try {
-            await Demand.findOneAndUpdate(
+            const mostrar = await Demand.findOneAndUpdate(
               { _id: id },
               { level: newLevel },
               { new: true }
@@ -52,7 +48,7 @@ export class ClarifyDemand extends BaseController {
             .status(203)
             .send({ code: 203, error: 'This action is not authorized' });
         }
-      }
+      
     }
   }
 }
