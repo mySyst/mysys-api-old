@@ -1,6 +1,6 @@
 import { ClassMiddleware, Controller, Post } from '@overnightjs/core';
 import { Request, Response } from 'express';
-import { Demand } from '@src/models/demand';
+import { Demand, Clarify } from '@src/models/demand';
 import { authMiddleware } from '@src/middlewares/auth';
 import { BaseController } from '.';
 
@@ -12,6 +12,12 @@ export class DemandsController extends BaseController {
     try {
       const demand = new Demand({
         ...req.body,
+        ...{
+          trash: false,
+          completed: false,
+          project: false,
+          classification: '',
+        },
         ...{ userId: req.context?.userId },
       });
       const newDemand = await demand.save();

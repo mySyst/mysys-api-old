@@ -6,19 +6,23 @@ import { BaseController } from '.';
 
 @Controller('alldemands')
 @ClassMiddleware(authMiddleware)
-export class AllDemandsController extends BaseController {
-  @Get('')
-  public async getAllDemandsForLoggedUser(
-    req: Request,
-    res: Response
-  ): Promise<void> {
+export class GetController extends BaseController {
+  @Get('get')
+  public async getForLoggedUser(req: Request, res: Response): Promise<void> {
+    // const { clarify, completed } = req.query;
+    const clarify = req.query.clarify;
+    const completed = req.query.completed;
 
     if (req.context?.userId) {
       try {
         const demands: Array<Demand> = await Demand.find({
           userId: req.context?.userId,
+          trash: false,
+          project: false,
+          completed: completed,
+          classification: clarify,
         });
-        console.log('The demands ', demands);
+        console.log('The Inbox', demands);
         res.status(200).send(demands);
       } catch (error) {
         this.sendCreateUpdateErrorResponse(res, error);

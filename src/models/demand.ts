@@ -30,10 +30,10 @@ export interface Demand {
   idProject?: string;
   level: number;
   completed: boolean;
-  classification: Clarify;
+  classification: string;
   delegate: string;
   date: Date;
-  context: Context;
+  context: string;
   userId: string;
   createdAt: Date;
   updatedAt: Date;
@@ -50,15 +50,14 @@ const schema = new mongoose.Schema(
     project: Boolean,
     idProject: { type: String },
     level: { type: Number },
-    classification: { type: String, enum: Clarify },
+    classification: { type: String },
     delegate: { type: String },
     date: { type: String },
-    context: { type: String, enum: Context },
+    context: { type: String },
     userId: { type: Schema.Types.ObjectId, ref: 'User', require: true },
-    createdAt: { type: Date, default: Date.now },
-    updatedAt: { type: Date, default: Date.now },
   },
   {
+    timestamps: true,
     toJSON: {
       transform: (_, ret): void => {
         ret.id = ret._id;

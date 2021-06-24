@@ -15,6 +15,9 @@ import { UsersController } from './controllers/users';
 import { ClarifyDemand } from './controllers/clarifyDemand';
 import { AllProjectsController } from './controllers/allProjects';
 import { AllDemandsOfProjectController } from './controllers/allDemandsOfProjects';
+import { AllInboxController } from './controllers/inbox';
+import { GetController } from './controllers/get';
+import { TrashController } from './controllers/trash';
 
 export class SetupServer extends Server {
   constructor(
@@ -46,6 +49,9 @@ export class SetupServer extends Server {
     const clarifyDemand = new ClarifyDemand();
     const allprojectsController = new AllProjectsController();
     const alldemandsofprojectcontroller = new AllDemandsOfProjectController;
+    const inbox = new AllInboxController;
+    const get = new GetController;
+    const trash = new TrashController;
     this.addControllers([
       demandsController,
       alldemandsController,
@@ -53,6 +59,9 @@ export class SetupServer extends Server {
       clarifyDemand,
       allprojectsController,
       alldemandsofprojectcontroller,
+      inbox,
+      get,
+      trash,
     ]);
   }
 
