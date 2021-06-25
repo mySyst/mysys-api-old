@@ -15,6 +15,7 @@ import { UsersController } from './controllers/users';
 import { ClarifyDemand } from './controllers/clarifyDemand';
 import { AllProjectsController } from './controllers/allProjects';
 import { AllDemandsOfProjectController } from './controllers/allDemandsOfProjects';
+import { DetailsOfProjectController } from './controllers/detailsOfProject';
 import { AllInboxController } from './controllers/inbox';
 import { GetController } from './controllers/get';
 import { TrashController } from './controllers/trash';
@@ -48,7 +49,8 @@ export class SetupServer extends Server {
     const usersController = new UsersController();
     const clarifyDemand = new ClarifyDemand();
     const allprojectsController = new AllProjectsController();
-    const alldemandsofprojectcontroller = new AllDemandsOfProjectController;
+    const allDemandsOfProjectController = new AllDemandsOfProjectController();
+    const detailsOfProjectController = new DetailsOfProjectController();
     const inbox = new AllInboxController;
     const get = new GetController;
     const trash = new TrashController;
@@ -58,7 +60,8 @@ export class SetupServer extends Server {
       usersController,
       clarifyDemand,
       allprojectsController,
-      alldemandsofprojectcontroller,
+      allDemandsOfProjectController,
+      detailsOfProjectController,
       inbox,
       get,
       trash,

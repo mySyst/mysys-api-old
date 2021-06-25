@@ -22,7 +22,7 @@ export class GetController extends BaseController {
             i.classification === clarify &&
             i.completed === completed &&
             i.project === false &&
-            i. trash === false
+            i.trash === false
         );
         res.status(200).send(demandsFiltered);
       } catch (error) {
